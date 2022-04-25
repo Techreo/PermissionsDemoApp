@@ -63,6 +63,19 @@ class MyApp extends StatelessWidget {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
+                    child: const Text('Download files'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Network()),
+                      );
+                    },
+                  )
+              ),
+              SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
                     child: const Text('Geolocation'),
                     onPressed: () {
                       Navigator.push(
@@ -80,20 +93,7 @@ class MyApp extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const Storage()),
-                      );
-                    },
-                  )
-              ),
-              SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    child: const Text('Upload / Download files'),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Network()),
+                        MaterialPageRoute(builder: (context) => Storage()),
                       );
                     },
                   )

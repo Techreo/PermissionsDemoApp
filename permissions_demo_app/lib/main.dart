@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:permissions_demo_app/biometrics.dart';
 import 'package:permissions_demo_app/camera.dart';
@@ -5,15 +6,20 @@ import 'package:permissions_demo_app/geolocation.dart';
 import 'package:permissions_demo_app/network.dart';
 import 'package:permissions_demo_app/storage.dart';
 
-void main() {
-  runApp(const MaterialApp(
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Obtain a list of the available cameras on the device.
+  List<CameraDescription> cameras = await availableCameras();
+
+  runApp(MaterialApp(
     title: 'Permissions Demo',
-    home: MyApp(),
+    home: MyApp(cameras: cameras),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final List<CameraDescription> cameras;
+  MyApp({Key? key,required this.cameras}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -48,7 +54,7 @@ class MyApp extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const Camera()),
+                        MaterialPageRoute(builder: (context) => Camera(cameras: cameras)),
                       );
                     },
                   )
